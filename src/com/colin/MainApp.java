@@ -4,12 +4,18 @@ import processing.core.PApplet;
 
 public class MainApp extends PApplet {
 
+    public static PApplet applet;
+    public static SpriteManager spriteManager;
+
     public static void main(String[] args) {
         String[] PApp = {"com.colin.MainApp"};
         PApplet.main(PApp);
     }
 
     public void setup() {
+        applet = this;
+        spriteManager = new SpriteManager();
+
         surface.setTitle("Colin's Workspace");
         surface.setResizable(false);
         surface.setLocation(-3, -3);

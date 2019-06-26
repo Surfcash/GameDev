@@ -1,0 +1,118 @@
+package com.colin;
+
+import processing.core.PApplet;
+import processing.core.PImage;
+
+import java.io.File;
+import java.util.ArrayList;
+
+public final class SpriteManager extends AppletObject{
+
+    private ArrayList<Sprite> sprites = new ArrayList<>();
+    private ArrayList<Spritesheet> spritesheets = new ArrayList<>();
+
+    SpriteManager() {
+        loadAssets();
+    }
+
+    public static PImage loadSprite(String filePath, String name, PApplet applet) {
+        File folder = new File(applet.sketchPath(filePath));
+        File[] files = folder.listFiles();
+        PApplet.println("Loading '" + filePath + "/" + name + "...'");
+        if (files != null) {
+            for (File i : files) {
+                String fileName = i.getName();
+                int pos = fileName.lastIndexOf(".");
+                fileName = pos > 0 ? fileName.substring(0, pos) : fileName;
+                if (i.isFile()) {
+                    if(fileName.equals(name)) {
+                        System.out.println(fileName);
+                        return applet.loadImage(i.getPath());
+                    }
+                    else {
+                        System.out.println("File does not exist!");
+                    }
+                }
+            }
+        }
+        return null;
+    }
+
+    private void loadSpritesFromFolder(String filePath, String prefix) {
+        File folder = new File(getApplet().sketchPath(filePath));
+        File[] files = folder.listFiles();
+        PApplet.println("Loading Folder '" + filePath + "/...'");
+        if (files != null) {
+            for (File i : files) {
+                String fileName = i.getName();
+                String[] fileNameSections = PApplet.split(fileName, ".");
+                String name = fileNameSections[0];
+                String fileType = fileNameSections[fileNameSections.length - 1];
+                //Proper image
+                if(fileType.equals("png")) {
+                    PImage img = getApplet().loadImage(i.getPath());
+                    PApplet.print("Loading ");
+                    //Sprite format
+                    if(fileNameSections.length == 2) {
+                        PApplet.println("Sprite: " + name);
+                        sprites.add(new Sprite(img, prefix + fileName));
+                    }
+                    //Spritesheet format
+                    else if(fileNameSections.length == 4) {
+                        PApplet.println("Spritesheet: " + name);
+                        spritesheets.add(new Spritesheet(prefix + name, Integer.parseInt(fileNameSections[1]), Integer.parseInt(fileNameSections[2]), img));
+                    } else {
+                        PApplet.println("Invalid Name");
+                    }
+                }
+            }
+        }
+    }
+
+    public void reload() {
+        loadAssets();
+    }
+
+    private void loadAssets() {
+        PApplet.println("-= Loading Sprite Assets =-");
+        sprites.clear();
+        long timePrevious = System.currentTimeMillis();
+        loadSpritesFromFolder("assets", "assets");
+        File folder = new File(getApplet().sketchPath("assets/sprites"));
+        File[] files = folder.listFiles();
+        if(files != null) {
+            for(File i : files) {
+                String fileName = i.getName();
+                loadSpritesFromFolder(i.getPath(), fileName);
+            }
+        }
+        PApplet.println("Asset Sprite Loading Complete! (0." + (System.currentTimeMillis() - timePrevious) + "s)");
+    }
+
+    public PImage getSprite(String reference) {
+        for(Sprite i : sprites) {
+            if(i.getID().equals(reference)) {
+                return i.getImage();
+            }
+        }
+        return null;
+    }
+
+    public Spritesheet getSpritesheet(String str) {
+        for(Spritesheet i : spritesheets) {
+            if(i.getID().equals(str + "_spritesheet")) {
+                return i;
+            }
+        }
+        return null;
+    }
+
+    public boolean hasSpriteSheet(String str) {
+        for(Spritesheet i : spritesheets) {
+            if(i.getID().equals(str + "_spritesheet")) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
