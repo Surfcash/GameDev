@@ -1,6 +1,6 @@
 package com.colin;
 
-public class DeltaTime {
+public final class DeltaTime {
 
     private long last, current, delta;
 

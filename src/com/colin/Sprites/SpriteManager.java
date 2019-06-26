@@ -1,17 +1,18 @@
-package com.colin;
+package com.colin.Sprites;
 
+import com.colin.AppletObject;
 import processing.core.PApplet;
 import processing.core.PImage;
 
 import java.io.File;
 import java.util.ArrayList;
 
-public final class SpriteManager extends AppletObject{
+public final class SpriteManager extends AppletObject {
 
     private ArrayList<Sprite> sprites = new ArrayList<>();
     private ArrayList<Spritesheet> spritesheets = new ArrayList<>();
 
-    SpriteManager() {
+    public SpriteManager() {
         loadAssets();
     }
 

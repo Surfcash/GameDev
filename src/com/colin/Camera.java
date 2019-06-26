@@ -1,5 +1,5 @@
 package com.colin;
 
-public class Camera {
+public final class Camera {
 
 }

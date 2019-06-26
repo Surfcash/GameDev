@@ -1,5 +1,6 @@
 package com.colin;
 
+import com.colin.Sprites.SpriteManager;
 import processing.core.PApplet;
 import processing.opengl.PJOGL;
 

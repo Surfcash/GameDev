@@ -1,9 +1,9 @@
-package com.colin;
+package com.colin.Sprites;
 
 import processing.core.PImage;
 
 
-class Spritesheet {
+public class Spritesheet {
 
     private String id;
     private PImage[] sprites;

@@ -2,7 +2,7 @@ package com.colin;
 
 import processing.core.PApplet;
 
-public class Clock {
+public final class Clock {
 
     private int days, hours, minutes, seconds, tick;
 

@@ -1,4 +1,4 @@
-package com.colin;
+package com.colin.Sprites;
 
 import processing.core.PImage;
 
