@@ -1,5 +1,6 @@
 package com.colin;
 
+import processing.core.PApplet;
 import processing.core.PImage;
 import processing.core.PVector;
 
@@ -22,7 +23,8 @@ public abstract class Renderable extends AppletObject {
     public abstract void update();
 
     public PImage getSprite() {
-        return (hasSpriteSheet()) ? spriteManager.getSpritesheet(getSpritePrefix() + getSpriteID()).getSprite() : spriteManager.getSprite(getSpritePrefix() + getSpriteID());
+        String sprite = getSpritePrefix() + "_" + getSpriteID();
+        return (spriteManager.hasSpriteSheet(sprite)) ? spriteManager.getSpritesheet(sprite).getSprite() : spriteManager.getSprite(sprite);
     }
 
     public PImage getHighlightedSprite() {
@@ -45,7 +47,7 @@ public abstract class Renderable extends AppletObject {
         return renderFrom;
     }
 
-    public void setSpriteRoot(String str) {
+    public void setSpritePrefix(String str) {
         spritePrefix = str;
     }
 
@@ -63,9 +65,5 @@ public abstract class Renderable extends AppletObject {
 
     public void setRenderFrom(int num) {
         renderFrom = num;
-    }
-
-    public boolean hasSpriteSheet() {
-        return spriteManager.hasSpriteSheet(getSpritePrefix() + getSpriteID());
     }
 }

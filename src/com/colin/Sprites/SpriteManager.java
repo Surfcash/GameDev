@@ -42,7 +42,7 @@ public final class SpriteManager extends AppletObject {
     private void loadSpritesFromFolder(String filePath, String prefix) {
         File folder = new File(getApplet().sketchPath(filePath));
         File[] files = folder.listFiles();
-        PApplet.println("Loading Folder '" + filePath + "/...'");
+        PApplet.println("Loading Folder '" + filePath + "/...'" + " (Prefix " + prefix + ")");
         if (files != null) {
             for (File i : files) {
                 String fileName = i.getName();
@@ -56,12 +56,12 @@ public final class SpriteManager extends AppletObject {
                     //Sprite format
                     if(fileNameSections.length == 2) {
                         PApplet.println("Sprite: " + name);
-                        sprites.add(new Sprite(img, prefix + fileName));
+                        sprites.add(new Sprite(img, prefix + "_" + name));
                     }
                     //Spritesheet format
                     else if(fileNameSections.length == 4) {
                         PApplet.println("Spritesheet: " + name);
-                        spritesheets.add(new Spritesheet(prefix + name, Integer.parseInt(fileNameSections[1]), Integer.parseInt(fileNameSections[2]), img));
+                        spritesheets.add(new Spritesheet(prefix + "_" + name, Integer.parseInt(fileNameSections[1]), Integer.parseInt(fileNameSections[2]), img));
                     } else {
                         PApplet.println("Invalid Name");
                     }

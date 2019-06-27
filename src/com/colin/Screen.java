@@ -1,5 +1,6 @@
 package com.colin;
 
+import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Screen {
@@ -51,12 +52,13 @@ public class Screen {
                 (vec.y < 0));
     }
 
-    public boolean offScreen(PVector vec, int radius) {
-        PVector v1 = new PVector(vec.x + radius, vec.y);
-        PVector v2 = new PVector(vec.x - radius, vec.y);
-        PVector v3 = new PVector(vec.x, vec.y - radius);
-        PVector v4 = new PVector(vec.x, vec.y + radius);
-
-        return (!offScreen(v1) || !offScreen(v2) || !offScreen(v3) || !offScreen(v4));
+    public boolean onScreen(PVector vec, int radX, int radY) {
+        if (0 < vec.y + radY || getHeight() > vec.y - radY) {
+            return false;
+        }
+        if (0 < vec.x + radX || getWidth() > vec.x - radX) {
+            return false;
+        }
+        return true;
     }
 }
