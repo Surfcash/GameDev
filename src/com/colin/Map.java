@@ -53,10 +53,8 @@ public class Map {
         regionsOnCamera.clear();
         for(Region[] i : getRegions()) {
             for(Region j : i) {
-                if(j != null) {
-                    if (MainApp.game.getCamera().coordinateOnCamera(j.getPos(), HALF_REGION_SIZE)) {
-                        regionsOnCamera.add(j);
-                    }
+                if (MainApp.game.getCamera().coordinateOnCamera(j.getPos(), HALF_REGION_SIZE)) {
+                    regionsOnCamera.add(j);
                 }
             }
         }

@@ -36,8 +36,28 @@ public class MainApp extends PApplet {
     }
 
     public void draw() {
+        keyHeld();
+
         deltaTime.update();
         background(0);
         game.frame();
+    }
+
+    public void keyHeld() {
+        if(keyPressed) {
+            if(keyCode == 37) {
+                game.getCamera().addPos(5, 0);
+            }
+            if(keyCode == 38) {
+                game.getCamera().addPos(0, 5);
+            }
+            if(keyCode == 39) {
+                game.getCamera().addPos(-5, 0);
+            }
+            if(keyCode == 40) {
+                game.getCamera().addPos(0, -5);
+            }
+            keyCode = 0;
+        }
     }
 }

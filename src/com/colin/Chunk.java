@@ -21,9 +21,9 @@ public class Chunk extends CoordinateObject {
         for(int i = 0; i < Map.CHUNK_SIZE_IN_TILES; i++) {
             for(int j = 0; j < Map.CHUNK_SIZE_IN_TILES; j++) {
                 tiles[i][j] = new Tile(coordinateX, coordinateY);
-                coordinateY++;
+                coordinateY = (getY() > 0) ? coordinateY - 1 : coordinateY + 1;
             }
-            coordinateX++;
+            coordinateX = (getX() > 0) ? coordinateX - 1 : coordinateX + 1;
             coordinateY = getY() * Map.CHUNK_SIZE_IN_TILES;
         }
     }

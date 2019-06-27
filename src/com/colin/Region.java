@@ -22,9 +22,9 @@ public class Region extends CoordinateObject {
         for(int i = 0; i < Map.REGION_SIZE_IN_CHUNKS; i++) {
             for(int j = 0; j < Map.REGION_SIZE_IN_CHUNKS; j++) {
                 chunks[i][j] = new Chunk(coordinateX, coordinateY);
-                coordinateY++;
+                coordinateY = (getY() > 0) ? coordinateY - 1 : coordinateY + 1;
             }
-            coordinateX++;
+            coordinateX = (getX() > 0) ? coordinateX - 1 : coordinateX + 1;
             coordinateY = getY() * Map.REGION_SIZE_IN_CHUNKS;
         }
     }
@@ -38,7 +38,6 @@ public class Region extends CoordinateObject {
                 }
             }
         }
-        PApplet.println(chunksOnCamera.size() + " chunks on camera.");
     }
 
     public void render() {
