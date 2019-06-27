@@ -4,7 +4,10 @@ import processing.core.PApplet;
 
 public final class Clock {
 
-    private int days, hours, minutes, seconds, tick;
+    public static int MILLISECONDS_PER_TICK = 50;
+    public static int TICKS_PER_GAME_MINUTE = 20;
+
+    private int days, hours, minutes, seconds, ticks, millisecondsPassed;
 
     public Clock(int hour, int minute, int second) {
         setHours(hour);
@@ -14,6 +17,10 @@ public final class Clock {
 
     public Clock(String str) {
         setTime(str);
+    }
+
+    public void update() {
+        addMillisecondsPassed(MainApp.deltaTime.get());
     }
 
     public int getDays() {
@@ -32,8 +39,12 @@ public final class Clock {
         return seconds;
     }
 
-    public int getTick() {
-        return tick;
+    public int getTicks() {
+        return ticks;
+    }
+
+    public int getMillisecondsPassed() {
+        return millisecondsPassed;
     }
 
     public void setDays(int num) {
@@ -64,8 +75,12 @@ public final class Clock {
         seconds = num;
     }
 
-    public void setTick(int num) {
-        tick = num;
+    public void setTicks(int num) {
+        if(num >= TICKS_PER_GAME_MINUTE) {
+            addMinutes(num / TICKS_PER_GAME_MINUTE);
+            num = num % TICKS_PER_GAME_MINUTE;
+        }
+        ticks = num;
     }
 
     public void setTime(String str) {
@@ -77,6 +92,14 @@ public final class Clock {
         if(time.length > 2) {
             setSeconds(Integer.parseInt(time[2]));
         }
+    }
+
+    public void setMillisecondsPassed(int num) {
+        if(num >= MILLISECONDS_PER_TICK) {
+            addTicks(num / MILLISECONDS_PER_TICK);
+            num = num % MILLISECONDS_PER_TICK;
+        }
+        millisecondsPassed = num;
     }
 
     public void addDays(int num) {
@@ -95,8 +118,16 @@ public final class Clock {
         setSeconds(getSeconds() + num);
     }
 
+    public void addTicks(int num) {
+        setTicks(getTicks() + num);
+    }
+
+    public void addMillisecondsPassed(long num) {
+        setMillisecondsPassed(getMillisecondsPassed() + Math.toIntExact(num));
+    }
+
     @Override
     public String toString() {
-        return getHours() + ":" + (getMinutes() < 10 ? "0" + getMinutes(): getMinutes()) + ":" + (getSeconds() < 10 ? "0" + getSeconds(): getSeconds());
+        return getHours() + ":" + (getMinutes() < 10 ? "0" + getMinutes(): getMinutes()) + ":" + (getSeconds() < 10 ? "0" + getSeconds(): getSeconds()) + " " + getTicks() + " " + getMillisecondsPassed();
     }
 }

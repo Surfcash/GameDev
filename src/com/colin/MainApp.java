@@ -10,6 +10,7 @@ public class MainApp extends PApplet {
     public static SpriteManager spriteManager;
     public static DeltaTime deltaTime;
     public static Screen screen;
+    public static Game game;
 
     public static void main(String[] args) {
         String[] PApp = {"com.colin.MainApp"};
@@ -21,6 +22,8 @@ public class MainApp extends PApplet {
         deltaTime = new DeltaTime();
         spriteManager = new SpriteManager();
         screen = new Screen(width, height);
+
+        game = new Game();
 
         surface.setTitle("Colin's Workspace");
         surface.setResizable(false);
@@ -35,5 +38,6 @@ public class MainApp extends PApplet {
     public void draw() {
         deltaTime.update();
         background(0);
+        game.frame();
     }
 }

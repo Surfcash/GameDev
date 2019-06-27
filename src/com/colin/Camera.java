@@ -16,6 +16,7 @@ public class Camera extends PhysicsObject{
         setCamBorder(Map.MAP_SIZE - MainApp.screen.getCenter().x, Map.MAP_SIZE - MainApp.screen.getCenter().y);
     }
 
+    @Override
     public void render() {
     }
 
