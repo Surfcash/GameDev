@@ -1,13 +1,12 @@
 package com.colin;
 
-import processing.core.PApplet;
 import processing.core.PVector;
 
 import java.util.ArrayList;
 
 public abstract class CoordinateObject extends Renderable{
     private PVector pos;
-    private PVector coordinate;
+    private int x, y;
 
     public static ArrayList<CoordinateObject> coordinateObjects = new ArrayList<>();
 
@@ -25,16 +24,12 @@ public abstract class CoordinateObject extends Renderable{
         return new PVector(pos.x,pos.y);
     }
 
-    public PVector getCoordinate() {
-        return new PVector(coordinate.x,coordinate.y);
+    public int getX() {
+        return x;
     }
 
-    public int getCoordX() {
-        return PApplet.floor(getCoordinate().x);
-    }
-
-    public int getCoordY() {
-        return PApplet.floor(getCoordinate().y);
+    public int getY() {
+        return y;
     }
 
     public void setPos(float x, float y) {
@@ -45,12 +40,9 @@ public abstract class CoordinateObject extends Renderable{
         setPos(vector.x, vector.y);
     }
 
-    public void setCoordinate(float x, float y) {
-        this.coordinate = new PVector(x, y);
-    }
-
-    public void setCoordinate(PVector vector) {
-        setCoordinate(vector.x, vector.y);
+    public void setCoordinate(int x, int y) {
+        this.x = x;
+        this.y = y;
     }
 
     public void addPos(float x, float y) {
@@ -70,10 +62,7 @@ public abstract class CoordinateObject extends Renderable{
     }
 
     public void addCoordinate(float x, float y) {
-        setCoordinate(coordinate.x + x, coordinate.y + y);
-    }
-
-    public void addCoordinate(PVector vector) {
-        addCoordinate(vector.x, vector.y);
+        this.x += x;
+        this.y += y;
     }
 }
