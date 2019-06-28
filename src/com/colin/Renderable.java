@@ -17,6 +17,7 @@ public abstract class Renderable extends AppletObject {
     public void render() {
         getApplet().pushStyle();
         getApplet().imageMode(renderFrom());
+
         getApplet().image(getSprite(), getRenderPoint().x + game.getCamera().getRealPos().x, getRenderPoint().y + game.getCamera().getRealPos().y);
         getApplet().popStyle();
     }

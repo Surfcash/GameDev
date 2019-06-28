@@ -1,8 +1,10 @@
 package com.colin;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Region extends CoordinateObject {
 
@@ -17,15 +19,15 @@ public class Region extends CoordinateObject {
     }
 
     public void init() {
-        int coordinateX = getX() * Map.REGION_SIZE_IN_CHUNKS;
-        int coordinateY = getY() * Map.REGION_SIZE_IN_CHUNKS;
+        int x, y;
+        int startx = (getX() > 0) ? (getX() - 1) * Map.REGION_SIZE_IN_CHUNKS + 1 : (getX() + 1) * Map.REGION_SIZE_IN_CHUNKS - 1;
+        int starty = (getY() > 0) ? (getY() - 1) * Map.REGION_SIZE_IN_CHUNKS + 1 : (getY() + 1) * Map.REGION_SIZE_IN_CHUNKS - 1;
         for(int i = 0; i < Map.REGION_SIZE_IN_CHUNKS; i++) {
+            x = (getX() > 0) ? startx + i : startx - i;
             for(int j = 0; j < Map.REGION_SIZE_IN_CHUNKS; j++) {
-                chunks[i][j] = new Chunk(coordinateX, coordinateY);
-                coordinateY = (getY() > 0) ? coordinateY - 1 : coordinateY + 1;
+                y = (getY() > 0) ? starty + j : starty - j;
+                chunks[i][j] = new Chunk(x, y);
             }
-            coordinateX = (getX() > 0) ? coordinateX - 1 : coordinateX + 1;
-            coordinateY = getY() * Map.REGION_SIZE_IN_CHUNKS;
         }
     }
 
@@ -37,6 +39,9 @@ public class Region extends CoordinateObject {
                     chunksOnCamera.add(j);
                 }
             }
+        }
+        if(getY() < 0) {
+            Collections.reverse(chunksOnCamera);
         }
     }
 
@@ -59,5 +64,11 @@ public class Region extends CoordinateObject {
 
     public Chunk getChunk(int x, int y) {
         return getChunks()[x][y];
+    }
+
+    public Chunk getChunk(PVector vec) {
+        int x = PApplet.floor((PApplet.abs(vec.x) % Map.REGION_SIZE) / Map.CHUNK_SIZE);
+        int y = PApplet.floor((PApplet.abs(vec.y) % Map.REGION_SIZE) / Map.CHUNK_SIZE);
+        return getChunk(x, y);
     }
 }

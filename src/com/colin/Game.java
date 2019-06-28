@@ -1,5 +1,8 @@
 package com.colin;
 
+import processing.core.PApplet;
+import processing.core.PVector;
+
 public class Game extends AppletObject{
 
     private String STARTING_TIME = "7:00";
@@ -28,8 +31,18 @@ public class Game extends AppletObject{
     public void render() {
         getMap().render();
 
-        getApplet().fill(128, 255, 128);
+        PVector mouseLocation = new PVector(getApplet().mouseX - PApplet.floor(getCamera().getRealPos().x), PApplet.floor(getApplet().mouseY - getCamera().getRealPos().y));
+        Region hoveredRegion = map.getRegion(mouseLocation);
+        Chunk hoveredChunk = hoveredRegion.getChunk(mouseLocation);
+        Tile hoveredTile = hoveredChunk.getTile(mouseLocation);
+
+        getApplet().fill(255);
         getApplet().text(getApplet().frameRate, 50, 50);
+        getApplet().text(hoveredRegion.getX() + ", " + hoveredRegion.getY(), 50, 70);
+        getApplet().text(hoveredChunk.getX() + ", " + hoveredChunk.getY(), 50, 90);
+        getApplet().text(hoveredTile.getX() + ", " + hoveredTile.getY(), 50, 110);
+        getApplet().text(getApplet().mouseX - PApplet.floor(getCamera().getRealPos().x) + ", " + PApplet.floor(getApplet().mouseY - getCamera().getRealPos().y), 50, 130);
+        getApplet().text(MainApp.deltaTime.get(), 50, 150);
     }
 
     public Clock getClock() {

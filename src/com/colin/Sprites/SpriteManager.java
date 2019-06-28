@@ -87,7 +87,7 @@ public final class SpriteManager extends AppletObject {
                 loadSpritesFromFolder(i.getPath(), fileName);
             }
         }
-        PApplet.println("Asset Sprite Loading Complete! (0." + (System.currentTimeMillis() - timePrevious) + "s)");
+        PApplet.println("Asset Sprite Loading Complete! (" + ((System.currentTimeMillis() - timePrevious) / 1000F) + "s)");
     }
 
     public PImage getSprite(String reference) {

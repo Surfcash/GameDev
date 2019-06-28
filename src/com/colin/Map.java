@@ -1,11 +1,12 @@
 package com.colin;
 
 import processing.core.PApplet;
+import processing.core.PVector;
 
 import java.util.ArrayList;
 
 public class Map {
-    public static int MAP_SIZE_IN_REGIONS = 4;
+    public static int MAP_SIZE_IN_REGIONS = 6;
     public static int REGION_SIZE_IN_CHUNKS = 16;
     public static int CHUNK_SIZE_IN_TILES = 16;
     public static int TILE_SIZE = 64;
@@ -46,7 +47,7 @@ public class Map {
                 regions[i][j] = new Region(coordinateX, coordinateY);
             }
         }
-        PApplet.println("Map Initialization Complete! (0." + (System.currentTimeMillis() - timePrevious) + "s)");
+        PApplet.println("Map Initialization Complete! (" + ((System.currentTimeMillis() - timePrevious) / 1000F) + "s)");
     }
 
     public void updateRegionsOnCamera() {
@@ -79,5 +80,11 @@ public class Map {
 
     public Region getRegion(int x, int y) {
         return getRegions()[x][y];
+    }
+
+    public Region getRegion(PVector vec) {
+        int x = PApplet.floor(vec.x / REGION_SIZE) + HALF_MAP_SIZE_IN_REGIONS;
+        int y = PApplet.floor(vec.y / REGION_SIZE) + HALF_MAP_SIZE_IN_REGIONS;
+        return getRegion(x, y);
     }
 }

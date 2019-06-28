@@ -57,7 +57,6 @@ public class MainApp extends PApplet {
             if(keyCode == 40) {
                 game.getCamera().addPos(0, -5);
             }
-            keyCode = 0;
         }
     }
 }
