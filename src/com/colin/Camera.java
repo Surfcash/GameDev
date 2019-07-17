@@ -55,8 +55,11 @@ public class Camera extends PhysicsObject{
     }
 
     public boolean coordinateOnCamera(PVector vec, int radius) {
-        PVector trueLoc = new PVector(vec.x + getRealPos().x, vec.y + getRealPos().y);
-        return MainApp.screen.onScreen(trueLoc, radius, radius);
+        return coordinateOnCamera(vec, radius, radius);
+    }
+
+    public boolean coordinateOnCamera(PVector vec, int x, int y) {
+        return MainApp.screen.onScreen(new PVector(vec.x + getRealPos().x, vec.y + getRealPos().y), x, y);
     }
 
     @Override

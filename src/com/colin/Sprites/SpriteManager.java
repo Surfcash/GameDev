@@ -90,13 +90,28 @@ public final class SpriteManager extends AppletObject {
         PApplet.println("Asset Sprite Loading Complete! (" + ((System.currentTimeMillis() - timePrevious) / 1000F) + "s)");
     }
 
-    public PImage getSprite(String reference) {
+    public int getSpriteIndex(String str) {
+        int num = 0;
         for(Sprite i : sprites) {
-            if(i.getID().equals(reference)) {
+            if(i.getID().equals(str)) {
+                return num;
+            }
+            num++;
+        }
+        return 0;
+    }
+
+    public PImage getSprite(String str) {
+        for(Sprite i : sprites) {
+            if(i.getID().equals(str)) {
                 return i.getImage();
             }
         }
         return null;
+    }
+
+    public PImage getSprite(int num) {
+        return sprites.get(num).getImage();
     }
 
     public Spritesheet getSpritesheet(String str) {

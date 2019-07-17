@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Region extends CoordinateObject {
 
     private Chunk[][] chunks = new Chunk[Map.REGION_SIZE_IN_CHUNKS][Map.REGION_SIZE_IN_CHUNKS];
-    private ArrayList<Chunk> chunksOnCamera = new ArrayList<>();
+    public ArrayList<Chunk> chunksOnCamera = new ArrayList<>();
 
 
     public Region(int x, int y) {
@@ -35,7 +35,7 @@ public class Region extends CoordinateObject {
         chunksOnCamera.clear();
         for(Chunk[] i : getChunks()) {
             for(Chunk j : i) {
-                if(MainApp.game.getCamera().coordinateOnCamera(j.getPos(), Map.HALF_CHUNK_SIZE)) {
+                if(j.onCamera()) {
                     chunksOnCamera.add(j);
                 }
             }
@@ -70,5 +70,9 @@ public class Region extends CoordinateObject {
         int x = PApplet.floor((PApplet.abs(vec.x) % Map.REGION_SIZE) / Map.CHUNK_SIZE);
         int y = PApplet.floor((PApplet.abs(vec.y) % Map.REGION_SIZE) / Map.CHUNK_SIZE);
         return getChunk(x, y);
+    }
+
+    public boolean onCamera() {
+        return MainApp.game.getCamera().coordinateOnCamera(getPos(), Map.HALF_REGION_SIZE);
     }
 }

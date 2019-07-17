@@ -1,0 +1,44 @@
+<component name="libraryTable">
+  <library name="src">
+    <CLASSES />
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/backends/gdx-backend-android/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/backends/gdx-backend-headless/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/backends/gdx-backend-lwjgl3/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/backends/gdx-backend-lwjgl/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/backends/gdx-backend-moe/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/backends/gdx-backend-robovm/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/backends/gdx-backends-gwt/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-box2d/gdx-box2d-gwt/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-box2d/gdx-box2d-gwt/src/com/badlogic/gdx/physics/box2d/gwt/emu" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-box2d/gdx-box2d/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-bullet/jni/swig-src/collision" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-bullet/jni/swig-src/dynamics" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-bullet/jni/swig-src/extras" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-bullet/jni/swig-src/inversedynamics" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-bullet/jni/swig-src/linearmath" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-bullet/jni/swig-src/softbody" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-bullet/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-controllers/gdx-controllers-android/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-controllers/gdx-controllers-desktop/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-controllers/gdx-controllers-gwt/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-controllers/gdx-controllers-gwt/src/com/badlogic/gdx/controllers/gwt/emu" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-controllers/gdx-controllers-lwjgl3/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-controllers/gdx-controllers/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-freetype/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-jnigen/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-setup/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/extensions/gdx-tools/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/gdx/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/gdx/test" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/tests/gdx-tests-android/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/tests/gdx-tests-gwt/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/tests/gdx-tests-ios-intel/src/main/java" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/tests/gdx-tests-iosrobovm/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/tests/gdx-tests-lwjgl3/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/tests/gdx-tests-lwjgl/src" />
+      <root url="jar://$PROJECT_DIR$/../../APIs/libgdx-master.zip!/libgdx-master/tests/gdx-tests/src" />
+    </SOURCES>
+  </library>
+</component>

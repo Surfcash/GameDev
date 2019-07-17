@@ -1,32 +1,45 @@
 package com.colin;
 
-import processing.core.PApplet;
+import processing.core.PGraphics;
 import processing.core.PImage;
 import processing.core.PVector;
 
 import static com.colin.MainApp.game;
 import static com.colin.MainApp.spriteManager;
 
-public abstract class Renderable extends AppletObject {
+public class Renderable extends AppletObject {
 
     private String spritePrefix;
     private String spriteID;
+    private int spriteIndex;
+    private boolean hasSpritesheet;
     private PVector renderPoint;
     private int renderFrom = 3;
 
+    public Renderable(String prefix, String id) {
+        setSpritePrefix(prefix);
+        setSpriteID(id);
+        String sprite = getSpritePrefix() + "_" + getSpriteID();
+        hasSpritesheet = spriteManager.hasSpriteSheet(sprite);
+        setSpriteIndex(spriteManager.getSpriteIndex(sprite));
+    }
+
     public void render() {
+        if(getSpriteID() == null || getSpritePrefix() == null) {
+            return;
+        }
         getApplet().pushStyle();
         getApplet().imageMode(renderFrom());
-
         getApplet().image(getSprite(), getRenderPoint().x + game.getCamera().getRealPos().x, getRenderPoint().y + game.getCamera().getRealPos().y);
         getApplet().popStyle();
     }
 
-    public abstract void update();
-
     public PImage getSprite() {
         String sprite = getSpritePrefix() + "_" + getSpriteID();
-        return (spriteManager.hasSpriteSheet(sprite)) ? spriteManager.getSpritesheet(sprite).getSprite() : spriteManager.getSprite(sprite);
+        if(getSpriteIndex() == 0) {
+            setSpriteIndex(spriteManager.getSpriteIndex(sprite));
+        }
+        return (hasSpritesheet()) ? spriteManager.getSpritesheet(sprite).getSprite() : spriteManager.getSprite(getSpriteIndex());
     }
 
     public PImage getHighlightedSprite() {
@@ -43,6 +56,14 @@ public abstract class Renderable extends AppletObject {
 
     public PVector getRenderPoint() {
         return renderPoint;
+    }
+
+    public boolean hasSpritesheet() {
+        return hasSpritesheet;
+    }
+
+    public int getSpriteIndex() {
+        return spriteIndex;
     }
 
     public int renderFrom() {
@@ -67,5 +88,9 @@ public abstract class Renderable extends AppletObject {
 
     public void setRenderFrom(int num) {
         renderFrom = num;
+    }
+
+    public void setSpriteIndex(int num) {
+        spriteIndex = num;
     }
 }

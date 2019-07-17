@@ -28,6 +28,8 @@ public class MainApp extends PApplet {
         surface.setTitle("Colin's Workspace");
         surface.setResizable(false);
         surface.setLocation(-3, -3);
+
+        frameRate(60);
     }
 
     public void settings() {
@@ -44,18 +46,19 @@ public class MainApp extends PApplet {
     }
 
     public void keyHeld() {
+        float speed = 0.3F * deltaTime.get();
         if(keyPressed) {
             if(keyCode == 37) {
-                game.getCamera().addPos(5, 0);
+                game.getCamera().addPos(speed, 0);
             }
             if(keyCode == 38) {
-                game.getCamera().addPos(0, 5);
+                game.getCamera().addPos(0, speed);
             }
             if(keyCode == 39) {
-                game.getCamera().addPos(-5, 0);
+                game.getCamera().addPos(-speed, 0);
             }
             if(keyCode == 40) {
-                game.getCamera().addPos(0, -5);
+                game.getCamera().addPos(0, -speed);
             }
         }
     }

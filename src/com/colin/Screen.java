@@ -1,6 +1,5 @@
 package com.colin;
 
-import processing.core.PApplet;
 import processing.core.PVector;
 
 public class Screen {
@@ -53,20 +52,10 @@ public class Screen {
     }
 
     public boolean onScreen(PVector vec, int radX, int radY) {
-        boolean topOfScreen = 0 > vec.y + radY;
-        boolean bottomOfScreen = getHeight() < vec.y - radY;
-        boolean leftOfScreen = 0 > vec.x + radX;
-        boolean rightOfScreen = getWidth() < vec.x - radX;
-
-        //PApplet.println("Item is above top of screen: " + topOfScreen + " (" + 0 + ", " + (vec.y + radY) + ")");
-        //PApplet.println("Item is below bottom of screen: " + bottomOfScreen + " (" + getHeight() + ", " + (vec.y - radY) + ")");
-        //PApplet.println("Item is left of screen: " + leftOfScreen + " (" + 0 + ", " + (vec.x + radX) + ")");
-        //PApplet.println("Item is right of screen: " + rightOfScreen + " (" + getWidth() + ", " + (vec.x - radX) + ")");
-
-        if (0 > vec.y + radY || getHeight() < vec.y - radY) {
+        if (-10 > vec.y + radY || getHeight() + 10 < vec.y - radY) {
             return false;
         }
-        if (0 > vec.x + radX || getWidth() < vec.x - radX) {
+        if (-10 > vec.x + radX || getWidth() + 10 < vec.x - radX) {
             return false;
         }
         return true;

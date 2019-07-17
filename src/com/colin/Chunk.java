@@ -9,7 +9,7 @@ import java.util.Collections;
 public class Chunk extends CoordinateObject {
 
     private Tile[][] tiles = new Tile[Map.CHUNK_SIZE_IN_TILES][Map.CHUNK_SIZE_IN_TILES];
-    private ArrayList<Tile> tilesOnCamera = new ArrayList<>();
+    public ArrayList<Tile> tilesOnCamera = new ArrayList<>();
 
     public Chunk(int x, int y) {
         setCoordinate(x, y);
@@ -34,7 +34,7 @@ public class Chunk extends CoordinateObject {
         tilesOnCamera.clear();
         for(Tile[] i : getTiles()) {
             for(Tile j : i) {
-                if(MainApp.game.getCamera().coordinateOnCamera(j.getPos(), Map.HALF_TILE_SIZE)) {
+                if(j.onCamera()) {
                     tilesOnCamera.add(j);
                 }
             }
@@ -53,7 +53,7 @@ public class Chunk extends CoordinateObject {
     public void update() {
         updateTilesOnCamera();
         for(Tile i : tilesOnCamera) {
-            i.update();
+           // i.update();
         }
     }
 
@@ -69,5 +69,9 @@ public class Chunk extends CoordinateObject {
         int x = PApplet.floor((PApplet.abs(vec.x) % Map.CHUNK_SIZE) / Map.TILE_SIZE);
         int y = PApplet.floor((PApplet.abs(vec.y) % Map.CHUNK_SIZE) / Map.TILE_SIZE);
         return getTile(x, y);
+    }
+
+    public boolean onCamera() {
+        return MainApp.game.getCamera().coordinateOnCamera(getPos(), Map.HALF_CHUNK_SIZE);
     }
 }

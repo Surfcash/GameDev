@@ -2,22 +2,21 @@ package com.colin;
 
 import processing.core.PVector;
 
-import java.util.ArrayList;
-
 public abstract class CoordinateObject extends Renderable{
     private PVector pos;
     private int x, y;
 
-    public static ArrayList<CoordinateObject> coordinateObjects = new ArrayList<>();
-
     public CoordinateObject() {
-        setPos(0, 0);
-        coordinateObjects.add(this);
+        this(0, 0);
     }
 
     public CoordinateObject(float x, float y) {
+        this(0, 0, null, null);
+    }
+
+    public CoordinateObject(float x, float y, String prefix, String id) {
+        super(prefix, id);
         setPos(x, y);
-        coordinateObjects.add(this);
     }
 
     public PVector getPos() {

@@ -5,14 +5,14 @@ import processing.core.PVector;
 
 import java.util.ArrayList;
 
-public class Map {
-    public static int MAP_SIZE_IN_REGIONS = 6;
+public class Map extends AppletObject{
+    public static int MAP_SIZE_IN_REGIONS = 4;
     public static int REGION_SIZE_IN_CHUNKS = 16;
     public static int CHUNK_SIZE_IN_TILES = 16;
     public static int TILE_SIZE = 64;
 
     private Region[][] regions = new Region[MAP_SIZE_IN_REGIONS][MAP_SIZE_IN_REGIONS];
-    private ArrayList<Region> regionsOnCamera = new ArrayList<>();
+    public static ArrayList<Region> regionsOnCamera = new ArrayList<>();
 
     public static int CHUNK_SIZE = CHUNK_SIZE_IN_TILES * TILE_SIZE;
     public static int REGION_SIZE = CHUNK_SIZE * REGION_SIZE_IN_CHUNKS;
@@ -54,7 +54,7 @@ public class Map {
         regionsOnCamera.clear();
         for(Region[] i : getRegions()) {
             for(Region j : i) {
-                if (MainApp.game.getCamera().coordinateOnCamera(j.getPos(), HALF_REGION_SIZE)) {
+                if (j.onCamera()) {
                     regionsOnCamera.add(j);
                 }
             }
